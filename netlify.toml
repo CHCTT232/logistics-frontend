@@ -1,20 +1,28 @@
 [build]
   command = "npm install && npm run build"
   publish = "dist"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
 
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "10"
+  NODE_ENV = "production"
   VITE_API_BASE_URL = "https://sanchuangsai.chenhao.xin/api"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
 
 [[headers]]
   for = "/*"
   [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self' https: 'unsafe-inline' 'unsafe-eval' blob: data: gap: ws: wss:;"
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
     Access-Control-Allow-Headers = "Origin, X-Requested-With, Content-Type, Accept, Authorization" 
