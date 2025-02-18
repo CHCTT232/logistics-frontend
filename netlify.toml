@@ -1,19 +1,15 @@
 [build]
   command = "npm install && npm run build"
   publish = "dist"
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
 
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "10"
-  NODE_ENV = "production"
-  VITE_API_BASE_URL = "https://sanchuangsai.chenhao.xin/api"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = true
 
 [[headers]]
   for = "/*"
