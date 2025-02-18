@@ -16,24 +16,12 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        'vue': 'vue/dist/vue.esm-bundler.js'
+        'vue': '/node_modules/vue/dist/vue.esm-bundler.js'
       },
       extensions: ['.js', '.vue', '.json']
     },
-    server: {
-      host: '0.0.0.0',
-      port: 5175,
-      strictPort: false,
-      cors: true,
-      proxy: {
-        '/api': {
-          target: env.VITE_API_BASE_URL || 'http://localhost:3001',
-          changeOrigin: true,
-          secure: false,
-          ws: true,
-          rewrite: (path) => path
-        }
-      }
+    optimizeDeps: {
+      include: ['vue', 'vue-router', 'pinia', 'element-plus', '@element-plus/icons-vue']
     },
     build: {
       target: 'esnext',
@@ -56,8 +44,20 @@ export default defineConfig(({ command, mode }) => {
         }
       }
     },
-    optimizeDeps: {
-      include: ['vue', 'vue-router', 'element-plus', '@element-plus/icons-vue']
+    server: {
+      host: '0.0.0.0',
+      port: 5175,
+      strictPort: false,
+      cors: true,
+      proxy: {
+        '/api': {
+          target: env.VITE_API_BASE_URL || 'http://localhost:3001',
+          changeOrigin: true,
+          secure: false,
+          ws: true,
+          rewrite: (path) => path
+        }
+      }
     }
   }
 }) 
