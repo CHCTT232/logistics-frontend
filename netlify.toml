@@ -1,9 +1,10 @@
 [build]
-  command = "npm run build"
+  command = "npm install && npm run build"
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "16"
+  NODE_VERSION = "18"
+  NPM_VERSION = "10"
   VITE_API_BASE_URL = "https://sanchuangsai.chenhao.xin/api"
 
 [[redirects]]
