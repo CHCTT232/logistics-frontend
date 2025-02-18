@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import { createPinia } from 'pinia';
 import ElementPlus from 'element-plus';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import 'element-plus/dist/index.css';
@@ -7,39 +6,25 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import './assets/main.css';
 import App from './App.vue';
 import router from './router';
+import { createPinia } from 'pinia';
 
 const app = createApp(App);
+const pinia = createPinia();
+
+// 使用插件
+app.use(pinia);
+app.use(router);
+
+// 配置 Element Plus
+app.use(ElementPlus, {
+  locale: zhCn,
+  size: 'default'
+});
 
 // 注册所有图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
-
-// 使用插件
-app.use(createPinia());
-app.use(router);
-app.use(ElementPlus, {
-  locale: zhCn,
-  // 配置全局主题
-  zIndex: 3000,
-  size: 'default',
-  button: {
-    autoInsertSpace: true
-  },
-  message: {
-    max: 3
-  },
-  // 自定义主题色
-  theme: {
-    colors: {
-      primary: '#4CAF50',
-      success: '#66BB6A',
-      warning: '#FFB74D',
-      danger: '#EF5350',
-      info: '#90A4AE'
-    }
-  }
-});
 
 // 全局错误处理
 app.config.errorHandler = (err, vm, info) => {
