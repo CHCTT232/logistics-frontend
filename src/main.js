@@ -1,30 +1,35 @@
 import { createApp } from 'vue';
-import ElementPlus from 'element-plus';
-import * as ElementPlusIconsVue from '@element-plus/icons-vue';
-import 'element-plus/dist/index.css';
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
-import './assets/main.css';
 import App from './App.vue';
 import router from './router';
 import { createPinia } from 'pinia';
 
+// 导入样式
+import 'element-plus/dist/index.css';
+import './assets/main.css';
+
+// 导入 Element Plus
+import ElementPlus from 'element-plus';
+import zhCn from 'element-plus/es/locale/lang/zh-cn';
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+
+// 创建应用
 const app = createApp(App);
-const pinia = createPinia();
 
 // 使用插件
-app.use(pinia);
-app.use(router);
-
-// 配置 Element Plus
+app.use(createPinia());
 app.use(ElementPlus, {
   locale: zhCn,
-  size: 'default'
+  size: 'default',
+  zIndex: 3000
 });
 
 // 注册所有图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
+
+// 使用路由
+app.use(router);
 
 // 全局错误处理
 app.config.errorHandler = (err, vm, info) => {
