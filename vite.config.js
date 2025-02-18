@@ -9,19 +9,19 @@ export default defineConfig(({ command, mode }) => {
   
   return {
     plugins: [vue()],
-    base: '/',
+    base: './',
     define: {
       'process.env': env
     },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        'vue': '/node_modules/vue/dist/vue.esm-bundler.js'
-      },
-      extensions: ['.js', '.vue', '.json']
+        'vue': path.resolve(__dirname, 'node_modules/vue/dist/vue.esm-bundler.js')
+      }
     },
     optimizeDeps: {
-      include: ['vue', 'vue-router', 'pinia', 'element-plus', '@element-plus/icons-vue']
+      include: ['vue', 'vue-router', 'pinia', 'element-plus', '@element-plus/icons-vue'],
+      exclude: []
     },
     build: {
       target: 'esnext',
@@ -34,8 +34,11 @@ export default defineConfig(({ command, mode }) => {
           drop_debugger: true
         }
       },
-      sourcemap: false,
+      sourcemap: true,
       rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html')
+        },
         output: {
           manualChunks: {
             'element-plus': ['element-plus'],
