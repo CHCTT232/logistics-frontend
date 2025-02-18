@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'SourceHanSansCN';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: local('Noto Sans SC Regular'), local('NotoSansSC-Regular');
+}
+
+@font-face {
+  font-family: 'SourceHanSansCN';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 900;
+  src: local('Noto Sans SC Black'), local('NotoSansSC-Black');
+}
+
+@font-face {
+  font-family: 'MaShanZheng';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: local('Ma Shan Zheng'), local('MaShanZheng-Regular');
+}
+
+/* 全局字体设置 */
+body {
+  font-family: 'SourceHanSansCN', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* 行书字体类 */
+.xingshu {
+  font-family: 'MaShanZheng', cursive;
+} 
