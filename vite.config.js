@@ -15,7 +15,8 @@ export default defineConfig(({ command, mode }) => {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src')
+        '@': path.resolve(__dirname, 'src'),
+        'vue': 'vue/dist/vue.esm-bundler.js'
       },
       extensions: ['.js', '.vue', '.json']
     },
