@@ -1,19 +1,19 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  environment = { NODE_VERSION = "16" }
+
+[build.environment]
+  NODE_VERSION = "16"
+  VITE_API_BASE_URL = "https://sanchuangsai.chenhao.xin/api"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-[build.environment]
-  VITE_API_BASE_URL = "https://sanchuangsai.chenhao.xin/api"
-
 [[headers]]
   for = "/*"
-    [headers.values]
+  [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
     Access-Control-Allow-Headers = "Origin, X-Requested-With, Content-Type, Accept, Authorization" 
